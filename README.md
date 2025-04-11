@@ -281,11 +281,39 @@ Audio outputs from the voice bot are saved to the `outputs` directory.
 
 This script sets the necessary environment variables and runs the model with MPS acceleration.
 
+### Real-Time Voice Recognition (`voice_recognition.py`)
+
+A standalone, efficient voice recognition module that works independently of Pipecat:
+
+* Real-time microphone capture with automatic device selection
+* Voice Activity Detection (VAD) for speech segmentation
+* Whisper speech-to-text transcription (CPU-compatible on Apple Silicon)
+* Configurable sensitivity and thresholds
+
+**Features:**
+- Energy-based speech detection with adjustable thresholds
+- Automatic handling of MacOS compatibility issues with Whisper and MPS
+- Audio normalization for improved transcription accuracy
+- Output saved to WAV files for debugging and analysis
+
+**Usage:**
+```bash
+# List available microphones
+python voice_recognition.py --list-devices
+
+# Use specific microphone (e.g., device 1)
+python voice_recognition.py --mic-device 1
+
+# Use larger model for better accuracy (but slower)
+python voice_recognition.py --model small
+```
+
 ### Troubleshooting
 
 * If you encounter errors related to MPS operations, make sure `PYTORCH_ENABLE_MPS_FALLBACK=1` is set
 * For any model download issues, verify you've accepted the license for each model on Hugging Face
 * If you encounter any other issues, try running with CPU: `python run_csm.py --device cpu`
+* For voice recognition on macOS, we force CPU usage due to Whisper compatibility issues with MPS
 
 ---
 
