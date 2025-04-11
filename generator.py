@@ -169,6 +169,15 @@ class Generator:
 
 
 def load_csm_1b(device: str = "cuda") -> Generator:
+    # Check for appropriate device if none specified
+    if device == "cuda" and not torch.cuda.is_available():
+        if torch.backends.mps.is_available():
+            device = "mps"
+            print("CUDA not available, using MPS for Apple Silicon")
+        else:
+            device = "cpu"
+            print("CUDA not available, falling back to CPU")
+
     model = Model.from_pretrained("sesame/csm-1b")
     model.to(device=device, dtype=torch.bfloat16)
 

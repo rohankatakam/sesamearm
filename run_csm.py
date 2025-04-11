@@ -57,11 +57,15 @@ def prepare_prompt(text: str, speaker: int, audio_path: str, sample_rate: int) -
     return Segment(text=text, speaker=speaker, audio=audio_tensor)
 
 def main():
-    # Select the best available device, skipping MPS due to float64 limitations
+    # Select the best available device, prioritizing MPS for Apple Silicon
     if torch.cuda.is_available():
         device = "cuda"
+    elif torch.backends.mps.is_available():
+        device = "mps"
+        print("Using MPS (Metal Performance Shaders) for Apple Silicon")
     else:
         device = "cpu"
+        print("CUDA and MPS not available, falling back to CPU")
     print(f"Using device: {device}")
 
     # Load model

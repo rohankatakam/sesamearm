@@ -150,5 +150,71 @@ By using this model, you agree to comply with all applicable laws and ethical gu
 
 ---
 
+## Running on Apple Silicon (M1/M2/M3 Macs)
+
+This fork includes modifications for running CSM on Apple Silicon Macs using Metal Performance Shaders (MPS). The following changes have been made:
+
+1. Updated code to use MPS backend when available
+2. Added environment variables for MPS support
+3. Added helper scripts for setup and execution
+
+### Requirements for Apple Silicon
+
+* macOS on Apple Silicon (M1/M2/M3)
+* Python 3.10+ (recommended)
+* `ffmpeg` (install via `brew install ffmpeg`)
+
+### Setup for Apple Silicon
+
+```bash
+# Clone the repository
+git clone https://github.com/rohankatakam/sesamearm.git
+cd sesamearm
+
+# Create virtual environment
+python3.10 -m venv venv
+source venv/bin/activate
+
+# Install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# Install ffmpeg if not already installed
+brew install ffmpeg
+```
+
+### Environment Configuration
+
+Create a `.env` file with your Hugging Face token:
+
+```bash
+# Hugging Face Authentication
+HUGGING_FACE_TOKEN=your_huggingface_token_here
+
+# Apple Silicon / MPS Support
+NO_TORCH_COMPILE=1
+PYTORCH_ENABLE_MPS_FALLBACK=1
+```
+
+### Running on Apple Silicon
+
+Use the provided run script:
+
+```bash
+./run_on_mac.sh
+```
+
+This script sets the necessary environment variables and runs the model with MPS acceleration.
+
+### Troubleshooting
+
+* If you encounter errors related to MPS operations, make sure `PYTORCH_ENABLE_MPS_FALLBACK=1` is set
+* For any model download issues, verify you've accepted the license for each model on Hugging Face
+* If you encounter any other issues, try running with CPU: `python run_csm.py --device cpu`
+
+---
+
 ## Authors
 Johan Schalkwyk, Ankit Kumar, Dan Lyth, Sefik Emre Eskimez, Zack Hodari, Cinjon Resnick, Ramon Sanabria, Raven Jiang, and the Sesame team.
+
+Apple Silicon port by Rohan Katakam.
