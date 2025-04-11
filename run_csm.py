@@ -88,10 +88,10 @@ def main():
 
     # Generate conversation
     conversation = [
-        {"text": "Hey how are you doing?", "speaker_id": 0},
-        {"text": "Pretty good, pretty good. How about you?", "speaker_id": 1},
-        {"text": "I'm great! So happy to be speaking with you today.", "speaker_id": 0},
-        {"text": "Me too! This is some cool stuff, isn't it?", "speaker_id": 1}
+        {"text": "Ayo, what's the word?", "speaker_id": 0},
+        {"text": "Chillin dog. what you on?", "speaker_id": 1},
+        {"text": "You know how it is.", "speaker_id": 0},
+        {"text": "Fasho.", "speaker_id": 1}
     ]
 
     # Generate each utterance

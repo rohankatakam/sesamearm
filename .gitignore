@@ -38,6 +38,9 @@ ENV/
 .python-version
 *.wav
 output_*/
+outputs/**/*.wav
+outputs/**/*.mp3
+outputs/**/*.ogg
 basic_audio.wav
 full_conversation.wav
 context_audio.wav

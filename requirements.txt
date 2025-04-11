@@ -1,6 +1,9 @@
 # PyTorch and audio processing
 torch==2.4.0
 torchaudio==2.4.0
+numpy>=1.24.0
+sounddevice>=0.4.6
+soundfile>=0.12.1
 
 # Hugging Face dependencies
 tokenizers==0.21.0
@@ -16,5 +19,10 @@ silentcipher @ git+https://github.com/SesameAILabs/silentcipher@master
 # Required for model quantization
 bitsandbytes==0.42.0
 
+# Pipecat dependencies
+pipecat==0.3.0
+openai-whisper==20240930
+
 # System dependencies (not pip-installable):
 # - ffmpeg (install via brew install ffmpeg on macOS)
+# - portaudio (install via brew install portaudio on macOS)

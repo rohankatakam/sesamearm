@@ -204,6 +204,81 @@ Use the provided run script:
 ./run_on_mac.sh
 ```
 
+---
+
+## Voice AI Bot using Pipecat and Sesame CSM
+
+This project implements a voice AI bot that combines:
+- Speech recognition (Whisper)
+- LLM text generation (placeholder for Llama 3.2 1B)  
+- Voice synthesis (Sesame CSM)
+
+### Setup Instructions
+
+1. Install system dependencies:
+   ```bash
+   brew install ffmpeg portaudio
+   ```
+
+2. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Implementations
+
+This project provides two different implementations:
+
+#### 1. Simple Voice Bot (`simple_voice_bot.py`)
+
+A standalone implementation that integrates:
+- Whisper for speech-to-text
+- A simple pattern matcher (placeholder for Llama)
+- Sesame CSM for voice synthesis
+
+**Usage:**
+```bash
+python simple_voice_bot.py
+```
+
+This runs a simulation of the conversation flow with a predefined user message.
+
+#### 2. Pipecat-based Voice Bot (`pipecat_voice_bot.py`)
+
+A more complex implementation that uses the Pipecat framework for orchestrating the services:
+- Whisper STT via Pipecat's services
+- LLM text generation (pattern matcher)
+- Sesame CSM for voice synthesis
+- Audio output
+
+**Usage:**
+```bash
+# Run with sample conversation
+python pipecat_voice_bot.py --sample
+
+# Run with custom text
+python pipecat_voice_bot.py --text "Your custom message here"
+
+# Process audio from a file (not fully implemented yet)
+python pipecat_voice_bot.py --file /path/to/audio.wav
+```
+
+### Voice Bot Features
+
+The voice AI bot implements realistic conversation behaviors:
+
+1. **Turn-taking**: Waits for the user to finish speaking before responding
+
+2. **Backchanneling**: The ability to insert conversational signals like "yeah", "I see" during pauses in user speech
+
+3. **Interruptions**: Detect short pauses in user speech and politely interrupt when appropriate
+
+4. **Natural Pauses**: Insert slight random pauses in generated speech for realism
+
+### Generated Files
+
+Audio outputs from the voice bot are saved to the `outputs` directory.
+
 This script sets the necessary environment variables and runs the model with MPS acceleration.
 
 ### Troubleshooting
